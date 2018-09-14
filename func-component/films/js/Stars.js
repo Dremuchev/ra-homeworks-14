@@ -1,5 +1,15 @@
-'use strict';
+"use strict";
 
-function Stars() {
-  return <ul className="card-body-stars u-clearfix"><li><Star /></li></ul>;
+function Stars({count}) {
+  const stars =
+    typeof count === "number" && count >= 1 && count <= 5
+      ? count
+      : null;
+  return (
+    count && (
+      <ul className="card-body-stars u-clearfix">
+        {new Array(stars).fill(<li><Star /></li>) }
+      </ul>
+    )
+  );
 }
