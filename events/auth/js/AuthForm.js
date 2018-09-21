@@ -1,58 +1,40 @@
 'use strict';
 
-const user = {};
+function AuthForm({ onAuth }) {
+    const userData = {};
 
-const defaultCancel = f => {
-    event.preventDefault();
-    if (user.name && user.email && user. password) {
-        f(user);
-    }
-    return false;
-}
-
-const appendData = event => {
-    const field = event.currentTarget;
-    const fieldTitle = event.currentTarget.placeholder;
-    if (fieldTitle === 'Имя') {
-        user['name'] = field.value;
-    } else if (fieldTitle === 'Электронная почта') {
-        user['email'] = field.value;
-    } else {
-        user['password'] = field.value;
-    }
-}
-
-const checkSymbol = event => {
-    const regexEmail = /[a-zA-Z0-9@._-]/;
-    const regexPass = /[a-zA-Z0-9_]/;
-    const key = event.key;
-    const fieldTitle = event.currentTarget.placeholder;
-    if (fieldTitle === 'Электронная почта' && !regexEmail.test(key)) {
+    const handleSubmit = event => {
         event.preventDefault();
-    } else if (fieldTitle === 'Пароль' && !regexPass.test(key)) {
-        event.preventDefault();
-    }
-}
+        if (userData.name && userData.email && userData.password) {
+            onAuth(userData);
+        }
+    };
 
-function AuthForm({onAuth}) {
+    const handleEvent = event => {
+        const val = event.target.value;
+        userData[event.target.name] = event.target.value = event.target.name === 'email' 
+            ? val.replace(/[^\w\d\-@._]/g, "")
+            : val.replace(/[^\w\d_]/g, "");
+    }
+
     return (
-        <form className="ModalForm" action="/404/auth/" method="POST" onSubmit={() => defaultCancel(onAuth)}>
+        <form className="ModalForm" action="/404/auth/" method="POST" onSubmit={handleSubmit}>
             <div className="Input">
-                <input required type="text" placeholder="Имя" onChange={appendData} />
+                <input required type="text" placeholder="Имя" onChange={() => (userData["name"] = event.target.value)} />
                 <label />
             </div>
             <div className="Input">
-                <input type="email" placeholder="Электронная почта" onChange={appendData} onKeyPress={checkSymbol} />
+                <input type="email" placeholder="Электронная почта" name="email" onChange={handleEvent} />
                 <label />
             </div>
             <div className="Input">
-                <input required type="password" placeholder="Пароль" onChange={appendData} onKeyPress={checkSymbol} />
+                <input required type="password" placeholder="Пароль" name="password" onChange={handleEvent} />
                 <label />
             </div>
             <button type="submit">
                 <span>Войти</span>
-                <i className="fa fa-fw fa-chevron-right"></i>
+                <i className="fa fa-fw fa-chevron-right" />
             </button>
         </form>
-    )
+    );
 }
