@@ -9,13 +9,14 @@ class App extends React.Component {
           first_name: 'Alexey',
           last_name: 'Korzhov',
           url: 'https://vk.com/anonimizer_me',
-          birthday: 'efq'
+          birthday: '1988-06-01'
         },
         {
           first_name: 'Pavel',
           last_name: 'Durov',
           img: 'https://pp.userapi.com/c836333/v836333001/31189/8To0r3d-6iQ.jpg',
           url: 'https://vk.com/id1',
+          birthday: '1974-02-11'
         },
         {
           first_name: 'Super',
@@ -27,11 +28,13 @@ class App extends React.Component {
           first_name: 'Unknown',
           last_name: 'User',
           url: 'https://vk.com/id2',
+          birthday: '1974-02-11'
         },
         {
           first_name: 'Igor',
           last_name: 'Popov',
           url: 'https://vk.com/id17',
+          birthday: '1974-02-11'
         },
         {
           first_name: 'Oleg',
@@ -46,9 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="row">
-        {this.state.profiles.map((profile, i) => (
-          <Profile key={`profile_${i}`} {...profile}/>
-        ))}
+        {this.state.profiles.map((profile, i) => <Profile key={`profile_${i}`} {...profile} />)}
       </div>
     );
   }
