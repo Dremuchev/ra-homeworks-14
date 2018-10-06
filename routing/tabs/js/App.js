@@ -3,10 +3,29 @@ class App extends React.Component {
         return (
             <Router>
                 <div className="tabs">
-                    <nav className='tabs__items'>
-                        <NavLink exact activeClassName='tabs__item-active' className='tabs__item' to='/'>Рефераты</NavLink>
-                        <NavLink activeClassName='tabs__item-active' className='tabs__item' to='/creator'>Криэйтор</NavLink>
-                        <NavLink activeClassName='tabs__item-active' className='tabs__item' to='/fortune'>Гадалка</NavLink>
+                    <nav className="tabs__items">
+                        <NavLink
+                            exact
+                            activeClassName="tabs__item-active"
+                            className="tabs__item"
+                            to="/"
+                        >
+                            Рефераты
+                        </NavLink>
+                        <NavLink
+                            activeClassName="tabs__item-active"
+                            className="tabs__item"
+                            to="/creator"
+                        >
+                            Криэйтор
+                        </NavLink>
+                        <NavLink
+                            activeClassName="tabs__item-active"
+                            className="tabs__item"
+                            to="/fortune"
+                        >
+                            Гадалка
+                        </NavLink>
                     </nav>
                     <div className="tabs__content">
                         <Route exact path="/" component={Essay} />
@@ -15,6 +34,6 @@ class App extends React.Component {
                     </div>
                 </div>
             </Router>
-        );
+        )
     }
 }
