@@ -1,5 +1,7 @@
 const Nav = () => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    <a className="navbar-brand" href="/routing-xhr/magazine/">Известное онлайн издание</a>
-  </nav>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand" to="/routing-xhr/magazine/">
+            Известное онлайн издание
+        </Link>
+    </nav>
 )
