@@ -1,23 +1,19 @@
 class Cart extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isOpen: props.isOpen }
+        this.state = { isOpen: this.props.isOpen }
     }
 
     componentWillReceiveProps(args) {
-        this.setState({ isOpen: args.items.length !== 0 })
-    }
-
-    shouldComponentUpdate(nextProps) {
-        return this.props.items.length !== nextProps.items.length
+        this.setState({ isOpen: args.isOpen })
     }
 
     render() {
         const { isOpen } = this.state
-        if (this.state.isOpen) {
-            return <CartView {...this.props} isOpen={isOpen} />
-        } else {
-            return null
-        }
+        return isOpen ? (
+            <CartView {...this.props} isOpen={isOpen} />
+        ) : (
+            <CartView {...this.props} items={[]} />
+        )
     }
 }
