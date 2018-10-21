@@ -49,4 +49,5 @@ DateInput.defaultProps = {
         .split('/')
         .reverse()
         .join('-'),
+    required: false,
 }
