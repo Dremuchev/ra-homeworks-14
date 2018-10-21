@@ -8,12 +8,15 @@ class Cart extends React.Component {
         this.setState({ isOpen: args.isOpen })
     }
 
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.isOpen || this.props.isOpen) {
+            return true
+        }
+        return false
+    }
+
     render() {
         const { isOpen } = this.state
-        return isOpen ? (
-            <CartView {...this.props} isOpen={isOpen} />
-        ) : (
-            <CartView {...this.props} items={[]} />
-        )
+        return <CartView {...this.props} isOpen={isOpen} />
     }
 }
